@@ -106,7 +106,6 @@ pub trait ExclusiveMax<T> {
     fn exclusive_max(&self) -> &T;
 }
 
-
 pub fn triangle_numbers(n: i32) -> i32 {
     // n * (n + 1) / 2
     if n & 0b1 > 0 {
@@ -118,5 +117,19 @@ pub fn triangle_numbers(n: i32) -> i32 {
 
 #[cfg(test)]
 mod tests {
+    use super::*;
 
+    #[test]
+    fn test_triangle_numbers() {
+        assert_eq!(triangle_numbers(1), 1);
+        assert_eq!(triangle_numbers(2), 3);
+        assert_eq!(triangle_numbers(3), 6);
+        assert_eq!(triangle_numbers(4), 10);
+        assert_eq!(triangle_numbers(5), 15);
+        assert_eq!(triangle_numbers(6), 21);
+        assert_eq!(triangle_numbers(7), 28);
+        assert_eq!(triangle_numbers(8), 36);
+        assert_eq!(triangle_numbers(9), 45);
+        assert_eq!(triangle_numbers(10), 55);
+    }
 }

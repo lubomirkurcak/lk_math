@@ -19,6 +19,14 @@ pub struct Vector<const C: usize, T> {
     pub values: [T; C],
 }
 
+// impl<const C: usize, T: Default> Default for Vector<C, T> {
+//     fn default() -> Self {
+//         Self {
+//             values: Default::default(),
+//         }
+//     }
+// }
+
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 

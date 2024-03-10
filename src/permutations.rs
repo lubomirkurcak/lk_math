@@ -57,7 +57,7 @@ impl<const M: usize> From<PermId<M>> for Perm<M> {
 }
 
 impl<const M: usize> From<Perm<M>> for PermId<M> {
-    fn from(value: Perm<M>) -> Self {
+    fn from(_value: Perm<M>) -> Self {
         todo!()
     }
 }

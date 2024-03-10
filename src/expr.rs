@@ -146,13 +146,10 @@ where
                 let a_val = a.eval(vals);
                 let b_val = b.eval(vals);
 
-                // result = a == b
-                if a_val.is_ok() && b_val.is_err() {
-                    b.solve_internal(None, a_val.unwrap(), vals, forced);
-                } else if a_val.is_err() && b_val.is_ok() {
-                    a.solve_internal(None, b_val.unwrap(), vals, forced);
-                } else {
-                    panic!();
+                match (a_val, b_val) {
+                    (Ok(a_val), Err(_)) => b.solve_internal(None, a_val, vals, forced),
+                    (Err(_), Ok(b_val)) => a.solve_internal(None, b_val, vals, forced),
+                    _ => panic!(),
                 }
             }
             Expr::Ident(ident) => {
@@ -166,6 +163,12 @@ where
             Expr::Free => {
                 assert!(my_ident.is_some());
                 let my_ident = my_ident.unwrap().to_string();
+
+                #[allow(clippy::map_entry)]
+                // #[allow(
+                //     clippy::map_entry,
+                //     reason = "entry does not allow key by reference, see: https://github.com/rust-lang/rfcs/pull/1769"
+                // )]
                 if forced.contains_key(&my_ident) {
                     assert_eq!(forced.get(&my_ident).unwrap(), &result);
                 } else {

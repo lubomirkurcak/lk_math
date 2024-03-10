@@ -1,3 +1,5 @@
+pub mod prelude;
+
 pub mod aabb;
 pub mod arraynd;
 pub mod bijection;
@@ -14,10 +16,10 @@ pub mod line_iterator;
 pub mod linear_index;
 pub mod math;
 pub mod modular;
+pub mod permutations;
 pub mod sketch;
 pub mod transformations;
 pub mod vector;
-pub mod permutations;
 
 pub fn add(left: usize, right: usize) -> usize {
     left + right

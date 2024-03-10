@@ -1,2 +1,2 @@
 // mod group_presentation;
-mod map;
+pub mod map;

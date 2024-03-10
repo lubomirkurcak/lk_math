@@ -159,7 +159,7 @@ mod tests {
     use crate::interval::{Interval, IntervalExt};
 
     #[test]
-    fn interval_overlap_abab() {
+    fn abab() {
         let a = 0..2;
         let b = 1..3;
         assert_eq!(a.interval_union(&b), Some(0..3));
@@ -176,7 +176,7 @@ mod tests {
         assert!(!b.dominates_or_is_dominated_by(&a));
     }
     #[test]
-    fn interval_overlap_abba() {
+    fn abba() {
         let a = 0..3;
         let b = 1..2;
         assert_eq!(a.interval_union(&b), Some(0..3));
@@ -193,7 +193,7 @@ mod tests {
         assert!(b.dominates_or_is_dominated_by(&a));
     }
     #[test]
-    fn interval_overlap_aabb() {
+    fn aabb() {
         let a = 0..1;
         let b = 2..3;
         assert_eq!(a.interval_union(&b), None);
@@ -210,7 +210,7 @@ mod tests {
         assert!(!b.dominates_or_is_dominated_by(&a));
     }
     #[test]
-    fn interval_overlap_abx() {
+    fn abx() {
         let a = 0..2;
         let b = 1..2;
         assert_eq!(a.interval_union(&b), Some(0..2));
@@ -227,7 +227,7 @@ mod tests {
         assert!(b.dominates_or_is_dominated_by(&a));
     }
     #[test]
-    fn interval_overlap_xab() {
+    fn xab() {
         let a = 0..3;
         let b = 0..2;
         assert_eq!(a.interval_union(&b), Some(0..3));
@@ -244,7 +244,7 @@ mod tests {
         assert!(b.dominates_or_is_dominated_by(&a));
     }
     #[test]
-    fn interval_overlap_axb() {
+    fn axb() {
         let a = 0..2;
         let b = 2..3;
         assert_eq!(a.interval_union(&b), Some(0..3));

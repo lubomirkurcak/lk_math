@@ -1,13 +1,15 @@
-type GroupElement<const M: usize> = [usize; M];
+pub type GroupElement<const M: usize> = [usize; M];
 
-struct Group<const M: usize>;
+pub struct Group<const M: usize>;
 
 impl<const M: usize> Group<M> {
     pub fn identity() -> GroupElement<M> {
         let mut result = [0; M];
-        for i in 0..M {
-            result[i] = i;
-        }
+        result
+            .iter_mut()
+            .enumerate()
+            .take(M)
+            .for_each(|(i, x)| *x = i);
         result
     }
 
@@ -19,8 +21,6 @@ impl<const M: usize> Group<M> {
         }
         assert_eq!(0, id, "id was larger than group size");
         factoriadic.reverse();
-
-        // for x in factoriadic.iter() { print!("{}:", x) } println!("!");
 
         let mut elements: Vec<usize> = (0..M).collect();
         let mut result = [0; M];
@@ -217,9 +217,9 @@ mod tests {
         assert_eq!([4, 3, 2, 1, 0], Group::<5>::group_element(119));
     }
 
-    // #[test]
-    // fn test6() {
-    //     test_gen::<6>();
-    //     panic!()
-    // }
+    #[test]
+    fn test6() {
+        test_gen::<6>();
+        // panic!();
+    }
 }
